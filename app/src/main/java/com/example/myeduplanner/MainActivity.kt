@@ -1,47 +1,29 @@
-package com.example.myeduplanner
+package com.example.myeduplanner  // ← Change this to YOUR package name
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.myeduplanner.ui.theme.MyEduPlannerTheme
+import androidx.appcompat.app.AppCompatActivity
+import com.example.myeduplanner.databinding.ActivityMainBinding  // ← And this
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            MyEduPlannerTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // Learning Plan Button Click
+        binding.btnLearningPlan.setOnClickListener {
+            val intent = Intent(this, LearningPlanActivity::class.java)
+            startActivity(intent)
         }
-    }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MyEduPlannerTheme {
-        Greeting("Android")
+        // Session Plan Button Click
+        binding.btnSessionPlan.setOnClickListener {
+            val intent = Intent(this, SessionPlanActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
