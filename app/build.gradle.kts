@@ -37,6 +37,11 @@ android {
     buildFeatures {
         compose = true
     }
+
+    // Add this block:
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
