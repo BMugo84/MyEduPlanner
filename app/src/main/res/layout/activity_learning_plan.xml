@@ -27,149 +27,532 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fill in the details below"
-            android:textSize="14sp"
+            android:text="KTTC Learning Plan Template (REF: KTTC/TP/LP/F07)"
+            android:textSize="12sp"
             android:textColor="#666666"
             android:layout_marginBottom="24dp"/>
 
-        <!-- Week Number -->
+        <!-- SECTION 1: Basic Information -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Week Number *"
+            android:text="BASIC INFORMATION"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#1976D2"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Unit of Competence -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Unit of Competence *"
             android:textSize="14sp"
             android:textStyle="bold"
             android:textColor="#333333"
             android:layout_marginBottom="4dp"/>
-
         <EditText
-            android:id="@+id/etWeekNumber"
+            android:id="@+id/etUnitOfCompetence"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="e.g., Week 5"
+            android:hint="e.g., Install and configure computer systems"
             android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="12dp"/>
 
-        <!-- Class/Grade -->
+        <!-- Unit Code -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Class/Grade *"
+            android:text="Unit Code *"
             android:textSize="14sp"
             android:textStyle="bold"
             android:textColor="#333333"
             android:layout_marginBottom="4dp"/>
-
         <EditText
-            android:id="@+id/etClass"
+            android:id="@+id/etUnitCode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="e.g., Grade 5A"
+            android:hint="e.g., ICT/OS/CS/01/4/A"
             android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="12dp"/>
 
-        <!-- Subject -->
+        <!-- Trainer Name -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Subject *"
+            android:text="Name of Trainer *"
             android:textSize="14sp"
             android:textStyle="bold"
             android:textColor="#333333"
             android:layout_marginBottom="4dp"/>
-
         <EditText
-            android:id="@+id/etSubject"
+            android:id="@+id/etTrainerName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="e.g., Mathematics"
+            android:hint="Your name"
+            android:inputType="textPersonName"
+            android:padding="12dp"
+            android:background="@android:color/white"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Admission Number -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Admission Number"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etAdmissionNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Trainer admission/staff number"
             android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="12dp"/>
 
-        <!-- Learning Objectives -->
+        <!-- Institution -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Learning Objectives *"
+            android:text="Institution *"
             android:textSize="14sp"
             android:textStyle="bold"
             android:textColor="#333333"
             android:layout_marginBottom="4dp"/>
-
         <EditText
-            android:id="@+id/etObjectives"
+            android:id="@+id/etInstitution"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:hint="What should students learn this week?"
-            android:inputType="textMultiLine"
-            android:gravity="top"
+            android:layout_height="wrap_content"
+            android:hint="e.g., Kenya Technical Trainers College"
+            android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="12dp"/>
 
-        <!-- Topics to Cover -->
+        <!-- Level -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Topics to Cover *"
+            android:text="Level *"
             android:textSize="14sp"
             android:textStyle="bold"
             android:textColor="#333333"
             android:layout_marginBottom="4dp"/>
-
         <EditText
-            android:id="@+id/etTopics"
+            android:id="@+id/etLevel"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:hint="List the main topics"
-            android:inputType="textMultiLine"
-            android:gravity="top"
+            android:layout_height="wrap_content"
+            android:hint="e.g., Level 4, Diploma, Certificate"
+            android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="12dp"/>
 
-        <!-- Materials Needed -->
+        <!-- Date of Preparation -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Materials Needed"
+            android:text="Date of Preparation *"
             android:textSize="14sp"
             android:textStyle="bold"
             android:textColor="#333333"
             android:layout_marginBottom="4dp"/>
-
         <EditText
-            android:id="@+id/etMaterials"
+            android:id="@+id/etDateOfPreparation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="e.g., 02/11/2025"
+            android:inputType="date"
+            android:padding="12dp"
+            android:background="@android:color/white"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Date of Revision -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date of Revision"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etDateOfRevision"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Leave blank if not revised yet"
+            android:inputType="date"
+            android:padding="12dp"
+            android:background="@android:color/white"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Number of Trainees -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Number of Trainees *"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etNumberOfTrainees"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="e.g., 30"
+            android:inputType="number"
+            android:padding="12dp"
+            android:background="@android:color/white"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Class -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Class *"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etClassCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="e.g., ICT-Y1-S1"
+            android:inputType="text"
+            android:padding="12dp"
+            android:background="@android:color/white"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- SECTION 2: Skills and Criteria -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SKILLS & CRITERIA"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#1976D2"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Skill or Job Task -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Skill or Job Task *"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etSkillOrJobTask"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:hint="Books, tools, resources needed"
+            android:hint="Describe the main skill or job task"
             android:inputType="textMultiLine"
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="12dp"/>
 
-        <!-- Assessment Methods -->
+        <!-- Benchmark Criteria -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Assessment Methods"
+            android:text="Benchmark or Criteria to be Used *"
             android:textSize="14sp"
             android:textStyle="bold"
             android:textColor="#333333"
             android:layout_marginBottom="4dp"/>
-
         <EditText
-            android:id="@+id/etAssessment"
+            android:id="@+id/etBenchmarkCriteria"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:hint="List benchmarks (use numbered list if multiple)"
+            android:inputType="textMultiLine"
+            android:gravity="top"
+            android:padding="12dp"
+            android:background="@android:color/white"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- SECTION 3: Weekly Session Details -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WEEKLY SESSION DETAILS"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#1976D2"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Week -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Week *"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etWeek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="e.g., 1"
+            android:inputType="number"
+            android:padding="12dp"
+            android:background="@android:color/white"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Session Number -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Session Number *"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etSessionNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="e.g., 1"
+            android:inputType="number"
+            android:padding="12dp"
+            android:background="@android:color/white"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Session Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Session Title *"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etSessionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Title of this session"
+            android:inputType="text"
+            android:padding="12dp"
+            android:background="@android:color/white"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Learning Outcome -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Learning Outcome *"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etLearningOutcome"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:hint="How will you assess learning?"
+            android:hint="What will trainees be able to do?"
+            android:inputType="textMultiLine"
+            android:gravity="top"
+            android:padding="12dp"
+            android:background="@android:color/white"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Trainer Activities -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trainer Activities *"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etTrainerActivities"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:hint="What will you (trainer) do?"
+            android:inputType="textMultiLine"
+            android:gravity="top"
+            android:padding="12dp"
+            android:background="@android:color/white"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Trainee Activities -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trainee Activities *"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etTraineeActivities"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:hint="What will trainees do?"
+            android:inputType="textMultiLine"
+            android:gravity="top"
+            android:padding="12dp"
+            android:background="@android:color/white"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Trainee Assignment -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trainee Assignment"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etTraineeAssignment"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:hint="Assignment or homework"
+            android:inputType="textMultiLine"
+            android:gravity="top"
+            android:padding="12dp"
+            android:background="@android:color/white"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Resources/References -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Resources & References"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etResourcesRefs"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:hint="Books, websites, documents"
+            android:inputType="textMultiLine"
+            android:gravity="top"
+            android:padding="12dp"
+            android:background="@android:color/white"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Training Aids -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Training Aids"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etTrainingAids"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:hint="Tools, equipment, materials"
+            android:inputType="textMultiLine"
+            android:gravity="top"
+            android:padding="12dp"
+            android:background="@android:color/white"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- SECTION 4: Learning Checks/Assessments -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LEARNING CHECKS / ASSESSMENTS"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#1976D2"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Knowledge Checks -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Knowledge Checks"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etKnowledgeChecks"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:hint="How will you assess knowledge?"
+            android:inputType="textMultiLine"
+            android:gravity="top"
+            android:padding="12dp"
+            android:background="@android:color/white"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Skills Checks -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Skills Checks"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etSkillsChecks"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:hint="How will you assess skills?"
+            android:inputType="textMultiLine"
+            android:gravity="top"
+            android:padding="12dp"
+            android:background="@android:color/white"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Attitudes Checks -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Attitudes Checks"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etAttitudesChecks"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:hint="How will you assess attitudes?"
+            android:inputType="textMultiLine"
+            android:gravity="top"
+            android:padding="12dp"
+            android:background="@android:color/white"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Reflections & Date -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reflections & Date"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etReflectionsDate"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:hint="Your reflections after the session"
             android:inputType="textMultiLine"
             android:gravity="top"
             android:padding="12dp"
@@ -181,7 +564,7 @@
             android:id="@+id/btnGenerate"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="Generate Document"
+            android:text="Generate Learning Plan"
             android:textSize="18sp"
             android:textStyle="bold"
             android:backgroundTint="#4CAF50"
