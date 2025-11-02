@@ -188,7 +188,7 @@
             android:id="@+id/etConclusion"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:hint="Summary, review key points, Q&A"
+            android:hint="Summary, review key points, QnA"
             android:inputType="textMultiLine"
             android:gravity="top"
             android:padding="12dp"
