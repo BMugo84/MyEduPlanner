@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Plan Template</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Calibri', Arial, sans-serif;
+            padding: 20px;
+            background: white;
+            color: #000;
+            font-size: 11pt;
+        }
+
+        .container {
+            max-width: 8.5in;
+            margin: 0 auto;
+            background: white;
+        }
+
+        .logo-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-header img {
+            width: 75%;
+            max-width: 600px;
+            height: auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 10pt;
+        }
+
+        .title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 14pt;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 0;
+        }
+
+        td {
+            border: 1px solid #000;
+            padding: 8px;
+            vertical-align: top;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        .field-value {
+            min-height: 20px;
+        }
+
+        .two-col-left {
+            width: 50%;
+        }
+
+        .two-col-right {
+            width: 50%;
+        }
+
+        .section-header {
+            text-align: center;
+            font-weight: bold;
+            background-color: #f0f0f0;
+        }
+
+        .subsection-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .delivery-table {
+            margin-top: 0;
+        }
+
+        .delivery-table th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+            text-align: center;
+            padding: 8px;
+            border: 1px solid #000;
+        }
+
+        .col-time {
+            width: 15%;
+        }
+
+        .col-trainer {
+            width: 28%;
+        }
+
+        .col-trainee {
+            width: 28%;
+        }
+
+        .col-check {
+            width: 29%;
+        }
+
+        .step-label {
+            font-weight: bold;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+            }
+            .container {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="logo-header">
+        <img src="{{logo_image_url}}" alt="KSTVET Logo">
+    </div>
+
+    <div class="header">REF: KTTC/TP/LP/F06</div>
+    <div class="title">Session Plan Template</div>
+
+    <table>
+        <tr>
+            <td class="label two-col-left">Date<br><span class="field-value">{{date}}</span></td>
+            <td class="label two-col-right">Time:<br><span class="field-value">{{time}}</span></td>
+        </tr>
+        <tr>
+            <td class="label">Trainer name:<br><span class="field-value">{{trainer_name}}</span></td>
+            <td class="label">Admission number:<br><span class="field-value">{{admission_number}}</span></td>
+        </tr>
+        <tr>
+            <td class="label">Institution:<br><span class="field-value">{{institution}}</span></td>
+            <td>
+                <div class="label">Level:<br><span class="field-value">{{level}}</span></div>
+                <div class="label" style="margin-top: 10px;">Class:<br><span class="field-value">{{class}}</span></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="label" colspan="2">Unit Code:<br><span class="field-value">{{unit_code}}</span></td>
+        </tr>
+        <tr>
+            <td class="label" colspan="2">Unit of Competence:<br><span class="field-value">{{unit_of_competence}}</span></td>
+        </tr>
+        <tr>
+            <td class="label" colspan="2">Session title:<br><span class="field-value">{{session_title}}</span></td>
+        </tr>
+        <tr>
+            <td class="label" colspan="2">LLN or Other Requirements of trainee (group)<br><span class="field-value">{{lln_requirements}}</span></td>
+        </tr>
+        <tr>
+            <td class="label">Learning outcome/s</td>
+            <td>
+                <div class="subsection-label">By the end of the session, the trainee should be able to:</div>
+                <div class="field-value">{{learning_outcomes}}</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="label">Resources (references, and learning aids)</td>
+            <td>
+                <div class="subsection-label">Reference Materials</div>
+                <div class="field-value">{{reference_materials}}</div>
+                <div class="subsection-label" style="margin-top: 10px;">Learning aids</div>
+                <div class="field-value">{{learning_aids}}</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="label" colspan="2">Safety requirements<br><span class="field-value">{{safety_requirements}}</span></td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td class="section-header" colspan="4">Session presentation</td>
+        </tr>
+        <tr>
+            <td class="label" colspan="4">1. Introduction</td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <div class="label">Trainer:</div>
+                <div class="field-value">{{introduction}}</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="label" colspan="4">2. Session Delivery</td>
+        </tr>
+    </table>
+
+    <table class="delivery-table">
+        <thead>
+        <tr>
+            <th class="col-time">Time (in minutes)</th>
+            <th class="col-trainer">Trainer Activity</th>
+            <th class="col-trainee">Trainee Activity</th>
+            <th class="col-check">Learning Check/Assessment</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="step-label">Step 1<br><br>{{step1_time}}</td>
+            <td>
+                <div class="label">Trainer:</div>
+                <div class="field-value">{{step1_trainer}}</div>
+            </td>
+            <td>
+                <div class="label">Trainee(s);</div>
+                <div class="field-value">{{step1_trainee}}</div>
+            </td>
+            <td class="field-value">{{step1_assessment}}</td>
+        </tr>
+        <tr>
+            <td class="step-label">Step 2<br>a)<br><br>{{step2a_time}}</td>
+            <td class="field-value">{{step2a_trainer}}</td>
+            <td class="field-value">{{step2a_trainee}}</td>
+            <td class="field-value">{{step2a_assessment}}</td>
+        </tr>
+        <tr>
+            <td class="step-label">b)<br><br>{{step2b_time}}</td>
+            <td class="field-value">{{step2b_trainer}}</td>
+            <td class="field-value">{{step2b_trainee}}</td>
+            <td class="field-value">{{step2b_assessment}}</td>
+        </tr>
+        <tr>
+            <td class="step-label">c)<br><br>{{step2c_time}}</td>
+            <td class="field-value">{{step2c_trainer}}</td>
+            <td class="field-value">{{step2c_trainee}}</td>
+            <td class="field-value">{{step2c_assessment}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <tr>
+            <td class="label" colspan="4">3. Session review:</td>
+        </tr>
+        <tr>
+            <td colspan="4" class="field-value">{{session_review}}</td>
+        </tr>
+        <tr>
+            <td class="label" colspan="4"><u>Assignment:</u></td>
+        </tr>
+        <tr>
+            <td colspan="4" class="field-value">{{assignment}}</td>
+        </tr>
+        <tr>
+            <td colspan="4" style="text-align: center;">
+                <div class="label">TOTAL TIME:</div>
+                <div class="field-value">{{total_time}}</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="label" colspan="4">Session reflection <i>(remarks)</i></td>
+        </tr>
+        <tr>
+            <td colspan="4" class="field-value">{{session_reflection}}</td>
+        </tr>
+        <tr>
+            <td class="label" colspan="4">Signature</td>
+        </tr>
+        <tr>
+            <td colspan="4" class="field-value" style="min-height: 40px;">{{signature}}</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
