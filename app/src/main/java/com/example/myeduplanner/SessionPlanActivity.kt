@@ -14,16 +14,20 @@ class SessionPlanActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySessionPlanBinding
     private lateinit var settings: AppSettings
+    private lateinit var datePickerHelper: DatePickerHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySessionPlanBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        settings = AppSettings(this)  // Initialize settings
+        settings = AppSettings(this)
+        datePickerHelper = DatePickerHelper(this)  // Add this line
 
-        // Load default values
         loadDefaultValues()
+
+        // Setup date picker
+        setupDatePicker()  // Add this line
 
         binding.btnGenerate.setOnClickListener {
             if (validateInputs()) {
@@ -61,6 +65,16 @@ class SessionPlanActivity : AppCompatActivity() {
         if (binding.etUnitOfCompetence.text.toString().isEmpty()) {
             binding.etUnitOfCompetence.setText(settings.getUnitOfCompetence())
         }
+    }
+
+    private fun setupDatePicker() {
+        // Date field - use long format for session plan
+        binding.etDate.setOnClickListener {
+            datePickerHelper.showDatePickerLongFormat(binding.etDate)
+        }
+
+        binding.etDate.isFocusable = false
+        binding.etDate.isClickable = true
     }
 
     private fun validateInputs(): Boolean {
