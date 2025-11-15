@@ -10,14 +10,22 @@ import java.io.File
 import java.io.FileWriter
 import java.io.IOException
 
+
+
 class LearningPlanActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLearningPlanBinding
+    private lateinit var settings: AppSettings
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLearningPlanBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        settings = AppSettings(this)  // Initialize settings
+
+        // Load default values
+        loadDefaultValues()
 
         binding.btnGenerate.setOnClickListener {
             if (validateInputs()) {
@@ -109,6 +117,41 @@ class LearningPlanActivity : AppCompatActivity() {
         }
 
         return true
+    }
+
+    private fun loadDefaultValues() {
+        // Only pre-fill if the field is currently empty
+        if (binding.etTrainerName.text.toString().isEmpty()) {
+            binding.etTrainerName.setText(settings.getTrainerName())
+        }
+
+        if (binding.etAdmissionNumber.text.toString().isEmpty()) {
+            binding.etAdmissionNumber.setText(settings.getAdmissionNumber())
+        }
+
+        if (binding.etInstitution.text.toString().isEmpty()) {
+            binding.etInstitution.setText(settings.getInstitution())
+        }
+
+        if (binding.etLevel.text.toString().isEmpty()) {
+            binding.etLevel.setText(settings.getLevel())
+        }
+
+        if (binding.etClassCode.text.toString().isEmpty()) {
+            binding.etClassCode.setText(settings.getClass())
+        }
+
+        if (binding.etUnitCode.text.toString().isEmpty()) {
+            binding.etUnitCode.setText(settings.getUnitCode())
+        }
+
+        if (binding.etUnitOfCompetence.text.toString().isEmpty()) {
+            binding.etUnitOfCompetence.setText(settings.getUnitOfCompetence())
+        }
+
+        if (binding.etNumberOfTrainees.text.toString().isEmpty()) {
+            binding.etNumberOfTrainees.setText(settings.getNumberOfTrainees())
+        }
     }
 
     private fun generateDocument() {
