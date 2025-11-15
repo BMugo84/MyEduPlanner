@@ -59,6 +59,8 @@
             android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Time -->
@@ -78,6 +80,8 @@
             android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Trainer Name -->
@@ -97,6 +101,8 @@
             android:inputType="textPersonName"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Admission Number -->
@@ -116,6 +122,8 @@
             android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Institution -->
@@ -135,6 +143,8 @@
             android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Level -->
@@ -154,6 +164,8 @@
             android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Class -->
@@ -173,6 +185,8 @@
             android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Unit Code -->
@@ -192,6 +206,8 @@
             android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Unit of Competence -->
@@ -211,6 +227,8 @@
             android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Session Title -->
@@ -230,6 +248,8 @@
             android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- LLN Requirements -->
@@ -250,6 +270,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="20dp"/>
 
         <!-- SECTION 2: Learning Outcomes and Resources -->
@@ -288,6 +310,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Reference Materials -->
@@ -308,6 +332,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Learning Aids -->
@@ -328,6 +354,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Safety Requirements -->
@@ -348,6 +376,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="20dp"/>
 
         <!-- SECTION 3: Introduction -->
@@ -377,6 +407,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="20dp"/>
 
         <!-- SECTION 4: Session Delivery Steps -->
@@ -417,6 +449,8 @@
             android:inputType="number"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="8dp"/>
 
         <TextView
@@ -436,6 +470,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="8dp"/>
 
         <TextView
@@ -455,6 +491,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="8dp"/>
 
         <TextView
@@ -474,6 +512,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="16dp"/>
 
         <!-- Step 2a -->
@@ -504,6 +544,8 @@
             android:inputType="number"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="8dp"/>
 
         <TextView
@@ -523,6 +565,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="8dp"/>
 
         <TextView
@@ -542,6 +586,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="8dp"/>
 
         <TextView
@@ -561,6 +607,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="16dp"/>
 
         <!-- Step 2b -->
@@ -591,6 +639,8 @@
             android:inputType="number"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="8dp"/>
 
         <TextView
@@ -610,6 +660,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="8dp"/>
 
         <TextView
@@ -629,6 +681,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="8dp"/>
 
         <TextView
@@ -648,6 +702,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="16dp"/>
 
         <!-- Step 2c -->
@@ -678,6 +734,8 @@
             android:inputType="number"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="8dp"/>
 
         <TextView
@@ -697,6 +755,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="8dp"/>
 
         <TextView
@@ -716,6 +776,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="8dp"/>
 
         <TextView
@@ -735,6 +797,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="20dp"/>
 
         <!-- SECTION 5: Session Review and Assignment -->
@@ -765,6 +829,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Assignment -->
@@ -785,6 +851,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Total Time -->
@@ -804,6 +872,8 @@
             android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Session Reflection -->
@@ -824,6 +894,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Signature -->
@@ -843,6 +915,8 @@
             android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="24dp"/>
 
         <!-- Generate Button -->

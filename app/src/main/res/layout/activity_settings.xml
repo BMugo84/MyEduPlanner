@@ -59,6 +59,8 @@
             android:inputType="textPersonName"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Admission Number -->
@@ -78,6 +80,8 @@
             android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="20dp"/>
 
         <!-- SECTION: Institution Details -->
@@ -107,6 +111,8 @@
             android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Level -->
@@ -126,6 +132,8 @@
             android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Class -->
@@ -145,6 +153,8 @@
             android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="20dp"/>
 
         <!-- SECTION: Unit Details -->
@@ -174,6 +184,8 @@
             android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Unit of Competence -->
@@ -194,6 +206,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Number of Trainees -->
@@ -213,6 +227,8 @@
             android:inputType="number"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="24dp"/>
 
         <!-- Save Button -->

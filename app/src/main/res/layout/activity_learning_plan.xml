@@ -59,6 +59,8 @@
             android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Unit Code -->
@@ -78,6 +80,8 @@
             android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Trainer Name -->
@@ -97,6 +101,8 @@
             android:inputType="textPersonName"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Admission Number -->
@@ -116,6 +122,8 @@
             android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Institution -->
@@ -135,6 +143,8 @@
             android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Level -->
@@ -154,6 +164,8 @@
             android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Date of Preparation -->
@@ -173,6 +185,8 @@
             android:inputType="date"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Date of Revision -->
@@ -192,6 +206,8 @@
             android:inputType="date"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Number of Trainees -->
@@ -211,6 +227,8 @@
             android:inputType="number"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Class -->
@@ -230,6 +248,8 @@
             android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="20dp"/>
 
         <!-- SECTION 2: Skills and Criteria -->
@@ -260,6 +280,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Benchmark Criteria -->
@@ -280,6 +302,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="20dp"/>
 
         <!-- SECTION 3: Weekly Session Details -->
@@ -309,6 +333,8 @@
             android:inputType="number"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Session Number -->
@@ -328,6 +354,8 @@
             android:inputType="number"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Session Title -->
@@ -347,6 +375,8 @@
             android:inputType="text"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Learning Outcome -->
@@ -367,6 +397,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Trainer Activities -->
@@ -387,6 +419,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Trainee Activities -->
@@ -407,6 +441,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Trainee Assignment -->
@@ -427,6 +463,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Resources/References -->
@@ -447,6 +485,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Training Aids -->
@@ -467,6 +507,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="20dp"/>
 
         <!-- SECTION 4: Learning Checks/Assessments -->
@@ -497,6 +539,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Skills Checks -->
@@ -517,6 +561,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Attitudes Checks -->
@@ -537,6 +583,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="12dp"/>
 
         <!-- Reflections and Date -->
@@ -557,6 +605,8 @@
             android:gravity="top"
             android:padding="12dp"
             android:background="@android:color/white"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
             android:layout_marginBottom="24dp"/>
 
         <!-- Generate Button -->
