@@ -1,9 +1,9 @@
-package com.example.myeduplanner  // ← Change this to YOUR package name
+package com.example.myeduplanner
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myeduplanner.databinding.ActivityMainBinding  // ← And this
+import com.example.myeduplanner.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,13 +14,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Learning Plan Button Click
+        // Settings button
+        binding.btnSettings.setOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Learning Plan button
         binding.btnLearningPlan.setOnClickListener {
             val intent = Intent(this, LearningPlanActivity::class.java)
             startActivity(intent)
         }
 
-        // Session Plan Button Click
+        // Session Plan button
         binding.btnSessionPlan.setOnClickListener {
             val intent = Intent(this, SessionPlanActivity::class.java)
             startActivity(intent)
