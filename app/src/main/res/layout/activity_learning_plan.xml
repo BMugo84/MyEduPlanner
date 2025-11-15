@@ -236,7 +236,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SKILLS & CRITERIA"
+            android:text="SKILLS and CRITERIA"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#1976D2"
@@ -433,7 +433,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Resources & References"
+            android:text="Resources and References"
             android:textSize="14sp"
             android:textStyle="bold"
             android:textColor="#333333"
@@ -539,11 +539,11 @@
             android:background="@android:color/white"
             android:layout_marginBottom="12dp"/>
 
-        <!-- Reflections & Date -->
+        <!-- Reflections and Date -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Reflections & Date"
+            android:text="Reflections and Date"
             android:textSize="14sp"
             android:textStyle="bold"
             android:textColor="#333333"
