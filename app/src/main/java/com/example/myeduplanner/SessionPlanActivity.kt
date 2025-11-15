@@ -13,16 +13,53 @@ import java.io.IOException
 class SessionPlanActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySessionPlanBinding
+    private lateinit var settings: AppSettings
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySessionPlanBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        settings = AppSettings(this)  // Initialize settings
+
+        // Load default values
+        loadDefaultValues()
+
         binding.btnGenerate.setOnClickListener {
             if (validateInputs()) {
                 generateDocument()
             }
+        }
+    }
+
+    private fun loadDefaultValues() {
+        // Only pre-fill if the field is currently empty
+        if (binding.etTrainerName.text.toString().isEmpty()) {
+            binding.etTrainerName.setText(settings.getTrainerName())
+        }
+
+        if (binding.etAdmissionNumber.text.toString().isEmpty()) {
+            binding.etAdmissionNumber.setText(settings.getAdmissionNumber())
+        }
+
+        if (binding.etInstitution.text.toString().isEmpty()) {
+            binding.etInstitution.setText(settings.getInstitution())
+        }
+
+        if (binding.etLevel.text.toString().isEmpty()) {
+            binding.etLevel.setText(settings.getLevel())
+        }
+
+        if (binding.etClass.text.toString().isEmpty()) {
+            binding.etClass.setText(settings.getClass())
+        }
+
+        if (binding.etUnitCode.text.toString().isEmpty()) {
+            binding.etUnitCode.setText(settings.getUnitCode())
+        }
+
+        if (binding.etUnitOfCompetence.text.toString().isEmpty()) {
+            binding.etUnitOfCompetence.setText(settings.getUnitOfCompetence())
         }
     }
 
