@@ -16,16 +16,20 @@ class LearningPlanActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLearningPlanBinding
     private lateinit var settings: AppSettings
+    private lateinit var datePickerHelper: DatePickerHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLearningPlanBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        settings = AppSettings(this)  // Initialize settings
+        settings = AppSettings(this)
+        datePickerHelper = DatePickerHelper(this)  // Add this line
 
-        // Load default values
         loadDefaultValues()
+
+        // Setup date pickers
+        setupDatePickers()  // Add this line
 
         binding.btnGenerate.setOnClickListener {
             if (validateInputs()) {
@@ -152,6 +156,25 @@ class LearningPlanActivity : AppCompatActivity() {
         if (binding.etNumberOfTrainees.text.toString().isEmpty()) {
             binding.etNumberOfTrainees.setText(settings.getNumberOfTrainees())
         }
+    }
+
+    private fun setupDatePickers() {
+        // Date of Preparation - click to open calendar
+        binding.etDateOfPreparation.setOnClickListener {
+            datePickerHelper.showDatePicker(binding.etDateOfPreparation)
+        }
+
+        // Disable keyboard on focus (optional - forces use of date picker)
+        binding.etDateOfPreparation.isFocusable = false
+        binding.etDateOfPreparation.isClickable = true
+
+        // Date of Revision - click to open calendar
+        binding.etDateOfRevision.setOnClickListener {
+            datePickerHelper.showDatePicker(binding.etDateOfRevision)
+        }
+
+        binding.etDateOfRevision.isFocusable = false
+        binding.etDateOfRevision.isClickable = true
     }
 
     private fun generateDocument() {
