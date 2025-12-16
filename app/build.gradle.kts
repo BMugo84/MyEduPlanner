@@ -66,3 +66,12 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }
+
+//Room Database Implementation
+//🎯 What We'll Build
+//
+//Database Layer - Store Learning Plans and Session Plans
+//History Screen - View all saved plans
+//View/Edit - Open and modify existing plans
+//Delete - Remove old plans
+//Search/Filter - Find plans easily
