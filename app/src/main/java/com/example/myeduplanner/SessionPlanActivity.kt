@@ -10,11 +10,20 @@ import java.io.File
 import java.io.FileWriter
 import java.io.IOException
 
+import androidx.lifecycle.lifecycleScope
+import com.example.myeduplanner.database.AppDatabase
+import com.example.myeduplanner.database.SessionPlanEntity
+import com.example.myeduplanner.database.PlanRepository
+import kotlinx.coroutines.launch
+
 class SessionPlanActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySessionPlanBinding
     private lateinit var settings: AppSettings
     private lateinit var datePickerHelper: DatePickerHelper
+
+    private lateinit var repository: PlanRepository
+    private var editingPlanId: Long? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,12 +31,23 @@ class SessionPlanActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         settings = AppSettings(this)
-        datePickerHelper = DatePickerHelper(this)  // Add this line
+        datePickerHelper = DatePickerHelper(this)
+        pdfGenerator = PdfGenerator(this)
+
+        // Initialize database repository
+        val database = AppDatabase.getDatabase(this)
+        repository = PlanRepository(database)
+
+        // Check if editing
+        editingPlanId = intent.getLongExtra("PLAN_ID", -1L).takeIf { it != -1L }
 
         loadDefaultValues()
+        setupDatePicker()
 
-        // Setup date picker
-        setupDatePicker()  // Add this line
+        // Load plan if editing
+        if (editingPlanId != null) {
+            loadPlanForEditing(editingPlanId!!)
+        }
 
         binding.btnGenerate.setOnClickListener {
             if (validateInputs()) {
@@ -64,6 +84,54 @@ class SessionPlanActivity : AppCompatActivity() {
 
         if (binding.etUnitOfCompetence.text.toString().isEmpty()) {
             binding.etUnitOfCompetence.setText(settings.getUnitOfCompetence())
+        }
+    }
+
+    //Add function to load plan for editing:
+    private fun loadPlanForEditing(planId: Long) {
+        lifecycleScope.launch {
+            val plan = repository.getSessionPlanById(planId)
+            plan?.let {
+                binding.etDate.setText(it.date)
+                binding.etTime.setText(it.time)
+                binding.etTrainerName.setText(it.trainerName)
+                binding.etAdmissionNumber.setText(it.admissionNumber)
+                binding.etInstitution.setText(it.institution)
+                binding.etLevel.setText(it.level)
+                binding.etClass.setText(it.className)
+                binding.etUnitCode.setText(it.unitCode)
+                binding.etUnitOfCompetence.setText(it.unitOfCompetence)
+                binding.etSessionTitle.setText(it.sessionTitle)
+                binding.etLlnRequirements.setText(it.llnRequirements)
+                binding.etLearningOutcomes.setText(it.learningOutcomes)
+                binding.etReferenceMaterials.setText(it.referenceMaterials)
+                binding.etLearningAids.setText(it.learningAids)
+                binding.etSafetyRequirements.setText(it.safetyRequirements)
+                binding.etIntroduction.setText(it.introduction)
+                binding.etStep1Time.setText(it.step1Time)
+                binding.etStep1Trainer.setText(it.step1Trainer)
+                binding.etStep1Trainee.setText(it.step1Trainee)
+                binding.etStep1Assessment.setText(it.step1Assessment)
+                binding.etStep2aTime.setText(it.step2aTime)
+                binding.etStep2aTrainer.setText(it.step2aTrainer)
+                binding.etStep2aTrainee.setText(it.step2aTrainee)
+                binding.etStep2aAssessment.setText(it.step2aAssessment)
+                binding.etStep2bTime.setText(it.step2bTime)
+                binding.etStep2bTrainer.setText(it.step2bTrainer)
+                binding.etStep2bTrainee.setText(it.step2bTrainee)
+                binding.etStep2bAssessment.setText(it.step2bAssessment)
+                binding.etStep2cTime.setText(it.step2cTime)
+                binding.etStep2cTrainer.setText(it.step2cTrainer)
+                binding.etStep2cTrainee.setText(it.step2cTrainee)
+                binding.etStep2cAssessment.setText(it.step2cAssessment)
+                binding.etSessionReview.setText(it.sessionReview)
+                binding.etAssignment.setText(it.assignment)
+                binding.etTotalTime.setText(it.totalTime)
+                binding.etSessionReflection.setText(it.sessionReflection)
+                binding.etSignature.setText(it.signature)
+
+                binding.btnGenerate.text = "Update Session Plan"
+            }
         }
     }
 
