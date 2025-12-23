@@ -180,6 +180,43 @@ class LearningPlanActivity : AppCompatActivity() {
         }
     }
 
+    private fun loadPlanForEditing(planId: Long) {
+        lifecycleScope.launch {
+            val plan = repository.getLearningPlanById(planId)
+            plan?.let {
+                // Fill all fields with existing data
+                binding.etUnitOfCompetence.setText(it.unitOfCompetence)
+                binding.etUnitCode.setText(it.unitCode)
+                binding.etTrainerName.setText(it.trainerName)
+                binding.etAdmissionNumber.setText(it.admissionNumber)
+                binding.etInstitution.setText(it.institution)
+                binding.etLevel.setText(it.level)
+                binding.etDateOfPreparation.setText(it.dateOfPreparation)
+                binding.etDateOfRevision.setText(it.dateOfRevision)
+                binding.etNumberOfTrainees.setText(it.numberOfTrainees)
+                binding.etClassCode.setText(it.classCode)
+                binding.etSkillOrJobTask.setText(it.skillOrJobTask)
+                binding.etBenchmarkCriteria.setText(it.benchmarkCriteria)
+                binding.etWeek.setText(it.week)
+                binding.etSessionNo.setText(it.sessionNo)
+                binding.etSessionTitle.setText(it.sessionTitle)
+                binding.etLearningOutcome.setText(it.learningOutcome)
+                binding.etTrainerActivities.setText(it.trainerActivities)
+                binding.etTraineeActivities.setText(it.traineeActivities)
+                binding.etTraineeAssignment.setText(it.traineeAssignment)
+                binding.etResourcesRefs.setText(it.resourcesRefs)
+                binding.etTrainingAids.setText(it.trainingAids)
+                binding.etKnowledgeChecks.setText(it.knowledgeChecks)
+                binding.etSkillsChecks.setText(it.skillsChecks)
+                binding.etAttitudesChecks.setText(it.attitudesChecks)
+                binding.etReflectionsDate.setText(it.reflectionsDate)
+
+                // Change button text to indicate editing
+                binding.btnGenerate.text = "Update Learning Plan"
+            }
+        }
+    }
+
     private fun setupDatePickers() {
         // Date of Preparation - click to open calendar
         binding.etDateOfPreparation.setOnClickListener {
