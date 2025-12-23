@@ -277,19 +277,92 @@ class LearningPlanActivity : AppCompatActivity() {
         // Generate HTML document
         val htmlContent = learningPlan.toHtmlDocument(htmlTemplate)
 
-        // Save to file
-        val success = saveHtmlToFile(htmlContent, learningPlan.getFileName())
+        // Show progress message
+        Toast.makeText(this, "Generating PDF...", Toast.LENGTH_SHORT).show()
 
-        if (success) {
-            Toast.makeText(
-                this,
-                "Learning Plan saved successfully!\nCheck Downloads/MyEduPlanner folder",
-                Toast.LENGTH_LONG
-            ).show()
-            clearForm()
-        } else {
-            Toast.makeText(this, "Failed to save document", Toast.LENGTH_SHORT).show()
-        }
+        // Generate PDF
+        val fileName = learningPlan.getFileName()
+        val outputFile = getPdfOutputFile(fileName)
+
+        pdfGenerator.generatePdfFromHtml(htmlContent, outputFile, object : PdfGenerator.PdfGenerationListener {
+            override fun onPdfGenerated(file: File) {
+                // Save to database
+                lifecycleScope.launch {
+                    try {
+                        val entity = LearningPlanEntity(
+                            id = editingPlanId ?: 0,
+                            unitOfCompetence = learningPlan.unitOfCompetence,
+                            unitCode = learningPlan.unitCode,
+                            trainerName = learningPlan.trainerName,
+                            admissionNumber = learningPlan.admissionNumber,
+                            institution = learningPlan.institution,
+                            level = learningPlan.level,
+                            dateOfPreparation = learningPlan.dateOfPreparation,
+                            dateOfRevision = learningPlan.dateOfRevision,
+                            numberOfTrainees = learningPlan.numberOfTrainees,
+                            classCode = learningPlan.classCode,
+                            skillOrJobTask = learningPlan.skillOrJobTask,
+                            benchmarkCriteria = learningPlan.benchmarkCriteria,
+                            week = learningPlan.week,
+                            sessionNo = learningPlan.sessionNo,
+                            sessionTitle = learningPlan.sessionTitle,
+                            learningOutcome = learningPlan.learningOutcome,
+                            trainerActivities = learningPlan.trainerActivities,
+                            traineeActivities = learningPlan.traineeActivities,
+                            traineeAssignment = learningPlan.traineeAssignment,
+                            resourcesRefs = learningPlan.resourcesRefs,
+                            trainingAids = learningPlan.trainingAids,
+                            knowledgeChecks = learningPlan.knowledgeChecks,
+                            skillsChecks = learningPlan.skillsChecks,
+                            attitudesChecks = learningPlan.attitudesChecks,
+                            reflectionsDate = learningPlan.reflectionsDate,
+                            pdfFilePath = file.absolutePath,
+                            updatedAt = System.currentTimeMillis()
+                        )
+
+                        if (editingPlanId != null) {
+                            // Update existing plan
+                            repository.updateLearningPlan(entity)
+                        } else {
+                            // Insert new plan
+                            repository.insertLearningPlan(entity)
+                        }
+
+                        runOnUiThread {
+                            val message = if (editingPlanId != null) {
+                                "Learning Plan updated successfully!"
+                            } else {
+                                "Learning Plan saved successfully!"
+                            }
+                            Toast.makeText(
+                                this@LearningPlanActivity,
+                                "$message\nPDF saved to Downloads/MyEduPlanner",
+                                Toast.LENGTH_LONG
+                            ).show()
+                            finish()  // Go back to previous screen
+                        }
+                    } catch (e: Exception) {
+                        runOnUiThread {
+                            Toast.makeText(
+                                this@LearningPlanActivity,
+                                "Error saving to database: ${e.message}",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+                }
+            }
+
+            override fun onError(error: String) {
+                runOnUiThread {
+                    Toast.makeText(
+                        this@LearningPlanActivity,
+                        "Failed to generate PDF: $error",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        })
     }
 
     private fun loadHtmlTemplate(): String {
