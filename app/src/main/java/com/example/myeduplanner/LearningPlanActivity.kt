@@ -10,6 +10,13 @@ import java.io.File
 import java.io.FileWriter
 import java.io.IOException
 
+//coroutine support
+import androidx.lifecycle.lifecycleScope
+import com.example.myeduplanner.database.AppDatabase
+import com.example.myeduplanner.database.LearningPlanEntity
+import com.example.myeduplanner.database.PlanRepository
+import kotlinx.coroutines.launch
+
 
 
 class LearningPlanActivity : AppCompatActivity() {
@@ -18,18 +25,33 @@ class LearningPlanActivity : AppCompatActivity() {
     private lateinit var settings: AppSettings
     private lateinit var datePickerHelper: DatePickerHelper
 
+    //coroutine
+    private lateinit var repository: PlanRepository
+    private var editingPlanId: Long? = null  // For edit mode
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLearningPlanBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         settings = AppSettings(this)
-        datePickerHelper = DatePickerHelper(this)  // Add this line
+        datePickerHelper = DatePickerHelper(this)
+        pdfGenerator = PdfGenerator(this)
+
+        // Initialize database repository
+        val database = AppDatabase.getDatabase(this)
+        repository = PlanRepository(database)
+
+        // Check if we're editing an existing plan
+        editingPlanId = intent.getLongExtra("PLAN_ID", -1L).takeIf { it != -1L }
 
         loadDefaultValues()
+        setupDatePickers()
 
-        // Setup date pickers
-        setupDatePickers()  // Add this line
+        // If editing, load the plan data
+        if (editingPlanId != null) {
+            loadPlanForEditing(editingPlanId!!)
+        }
 
         binding.btnGenerate.setOnClickListener {
             if (validateInputs()) {
