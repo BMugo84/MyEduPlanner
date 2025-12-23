@@ -327,18 +327,100 @@ class SessionPlanActivity : AppCompatActivity() {
         }
 
         val htmlContent = sessionPlan.toHtmlDocument(htmlTemplate)
-        val success = saveHtmlToFile(htmlContent, sessionPlan.getFileName())
 
-        if (success) {
-            Toast.makeText(
-                this,
-                "Session Plan saved successfully!\nCheck Downloads/MyEduPlanner folder",
-                Toast.LENGTH_LONG
-            ).show()
-            clearForm()
-        } else {
-            Toast.makeText(this, "Failed to save document", Toast.LENGTH_SHORT).show()
-        }
+        Toast.makeText(this, "Generating PDF...", Toast.LENGTH_SHORT).show()
+
+        val fileName = sessionPlan.getFileName()
+        val outputFile = getPdfOutputFile(fileName)
+
+        pdfGenerator.generatePdfFromHtml(htmlContent, outputFile, object : PdfGenerator.PdfGenerationListener {
+            override fun onPdfGenerated(file: File) {
+                lifecycleScope.launch {
+                    try {
+                        val entity = SessionPlanEntity(
+                            id = editingPlanId ?: 0,
+                            date = sessionPlan.date,
+                            time = sessionPlan.time,
+                            trainerName = sessionPlan.trainerName,
+                            admissionNumber = sessionPlan.admissionNumber,
+                            institution = sessionPlan.institution,
+                            level = sessionPlan.level,
+                            className = sessionPlan.className,
+                            unitCode = sessionPlan.unitCode,
+                            unitOfCompetence = sessionPlan.unitOfCompetence,
+                            sessionTitle = sessionPlan.sessionTitle,
+                            llnRequirements = sessionPlan.llnRequirements,
+                            learningOutcomes = sessionPlan.learningOutcomes,
+                            referenceMaterials = sessionPlan.referenceMaterials,
+                            learningAids = sessionPlan.learningAids,
+                            safetyRequirements = sessionPlan.safetyRequirements,
+                            introduction = sessionPlan.introduction,
+                            step1Time = sessionPlan.step1Time,
+                            step1Trainer = sessionPlan.step1Trainer,
+                            step1Trainee = sessionPlan.step1Trainee,
+                            step1Assessment = sessionPlan.step1Assessment,
+                            step2aTime = sessionPlan.step2aTime,
+                            step2aTrainer = sessionPlan.step2aTrainer,
+                            step2aTrainee = sessionPlan.step2aTrainee,
+                            step2aAssessment = sessionPlan.step2aAssessment,
+                            step2bTime = sessionPlan.step2bTime,
+                            step2bTrainer = sessionPlan.step2bTrainer,
+                            step2bTrainee = sessionPlan.step2bTrainee,
+                            step2bAssessment = sessionPlan.step2bAssessment,
+                            step2cTime = sessionPlan.step2cTime,
+                            step2cTrainer = sessionPlan.step2cTrainer,
+                            step2cTrainee = sessionPlan.step2cTrainee,
+                            step2cAssessment = sessionPlan.step2cAssessment,
+                            sessionReview = sessionPlan.sessionReview,
+                            assignment = sessionPlan.assignment,
+                            totalTime = sessionPlan.totalTime,
+                            sessionReflection = sessionPlan.sessionReflection,
+                            signature = sessionPlan.signature,
+                            pdfFilePath = file.absolutePath,
+                            updatedAt = System.currentTimeMillis()
+                        )
+
+                        if (editingPlanId != null) {
+                            repository.updateSessionPlan(entity)
+                        } else {
+                            repository.insertSessionPlan(entity)
+                        }
+
+                        runOnUiThread {
+                            val message = if (editingPlanId != null) {
+                                "Session Plan updated successfully!"
+                            } else {
+                                "Session Plan saved successfully!"
+                            }
+                            Toast.makeText(
+                                this@SessionPlanActivity,
+                                "$message\nPDF saved to Downloads/MyEduPlanner",
+                                Toast.LENGTH_LONG
+                            ).show()
+                            finish()
+                        }
+                    } catch (e: Exception) {
+                        runOnUiThread {
+                            Toast.makeText(
+                                this@SessionPlanActivity,
+                                "Error saving to database: ${e.message}",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+                }
+            }
+
+            override fun onError(error: String) {
+                runOnUiThread {
+                    Toast.makeText(
+                        this@SessionPlanActivity,
+                        "Failed to generate PDF: $error",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        })
     }
 
     private fun loadHtmlTemplate(): String {
