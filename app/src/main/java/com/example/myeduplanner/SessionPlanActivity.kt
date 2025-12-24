@@ -23,6 +23,7 @@ class SessionPlanActivity : AppCompatActivity() {
     private lateinit var datePickerHelper: DatePickerHelper
 
     private lateinit var repository: PlanRepository
+    private lateinit var pdfGenerator: PdfGenerator  // Make sure this exists
     private var editingPlanId: Long? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
