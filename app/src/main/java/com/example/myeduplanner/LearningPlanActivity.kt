@@ -26,6 +26,7 @@ class LearningPlanActivity : AppCompatActivity() {
     private lateinit var datePickerHelper: DatePickerHelper
 
     //coroutine
+    private lateinit var pdfGenerator: PdfGenerator  // Make sure this exists
     private lateinit var repository: PlanRepository
     private var editingPlanId: Long? = null  // For edit mode
 
