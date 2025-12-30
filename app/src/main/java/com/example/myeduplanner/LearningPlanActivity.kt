@@ -375,6 +375,17 @@ class LearningPlanActivity : AppCompatActivity() {
         }
     }
 
+    private fun getPdfOutputFile(fileName: String): File {
+        val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+        val appFolder = File(downloadsDir, "MyEduPlanner")
+
+        if (!appFolder.exists()) {
+            appFolder.mkdirs()
+        }
+
+        return File(appFolder, fileName)
+    }
+
     private fun saveHtmlToFile(htmlContent: String, fileName: String): Boolean {
         return try {
             val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
