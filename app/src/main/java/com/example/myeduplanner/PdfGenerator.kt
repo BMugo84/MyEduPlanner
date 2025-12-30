@@ -8,8 +8,8 @@ import android.print.PrintDocumentAdapter
 import android.print.PrintManager
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.print.PrintHelper
 import java.io.File
-import java.io.FileOutputStream
 
 class PdfGenerator(private val context: Context) {
 
@@ -31,21 +31,33 @@ class PdfGenerator(private val context: Context) {
 
             val webView = WebView(context)
             webView.settings.javaScriptEnabled = false
+            webView.settings.loadWithOverviewMode = true
+            webView.settings.useWideViewPort = true
 
             webView.webViewClient = object : WebViewClient() {
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
 
-                    // Small delay to ensure rendering is complete
                     android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
                         try {
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                                createPdf(webView, outputFile, listener)
+                                // Use print manager
+                                val printManager = context.getSystemService(Context.PRINT_SERVICE) as PrintManager
+                                val printAdapter = webView.createPrintDocumentAdapter(outputFile.name)
+                                val attributes = PrintAttributes.Builder()
+                                    .setMediaSize(PrintAttributes.MediaSize.ISO_A4)
+                                    .setResolution(PrintAttributes.Resolution("pdf", "pdf", 600, 600))
+                                    .setMinMargins(PrintAttributes.Margins.NO_MARGINS)
+                                    .build()
+
+                                // Print to PDF (this will use system print dialog)
+                                // For background saving, we need a workaround
+                                savePdfInBackground(webView, outputFile, listener)
                             }
                         } catch (e: Exception) {
                             listener.onError("Error creating PDF: ${e.message}")
                         }
-                    }, 300)
+                    }, 500)
                 }
             }
 
@@ -56,41 +68,51 @@ class PdfGenerator(private val context: Context) {
         }
     }
 
-    private fun createPdf(webView: WebView, outputFile: File, listener: PdfGenerationListener) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            try {
-                val printAdapter = webView.createPrintDocumentAdapter(outputFile.name)
+    private fun savePdfInBackground(webView: WebView, outputFile: File, listener: PdfGenerationListener) {
+        try {
+            // Create a bitmap from the webview
+            webView.measure(
+                android.view.View.MeasureSpec.makeMeasureSpec(595, android.view.View.MeasureSpec.EXACTLY),
+                android.view.View.MeasureSpec.makeMeasureSpec(842, android.view.View.MeasureSpec.EXACTLY)
+            )
+            webView.layout(0, 0, webView.measuredWidth, webView.measuredHeight)
 
-                // Use PrintedPdfDocument approach
-                val pdfDocument = android.graphics.pdf.PdfDocument()
+            val bitmap = android.graphics.Bitmap.createBitmap(
+                webView.measuredWidth,
+                webView.measuredHeight,
+                android.graphics.Bitmap.Config.ARGB_8888
+            )
+            val canvas = android.graphics.Canvas(bitmap)
+            webView.draw(canvas)
 
-                // Create a page
-                val pageInfo = android.graphics.pdf.PdfDocument.PageInfo.Builder(595, 842, 1).create() // A4 size
-                val page = pdfDocument.startPage(pageInfo)
+            // Create PDF from bitmap
+            val pdfDocument = android.graphics.pdf.PdfDocument()
+            val pageInfo = android.graphics.pdf.PdfDocument.PageInfo.Builder(595, 842, 1).create()
+            val page = pdfDocument.startPage(pageInfo)
 
-                // Draw the web view content
-                webView.draw(page.canvas)
+            val pdfCanvas = page.canvas
+            pdfCanvas.drawBitmap(bitmap, 0f, 0f, null)
 
-                pdfDocument.finishPage(page)
+            pdfDocument.finishPage(page)
 
-                // Write to file
-                FileOutputStream(outputFile).use { outputStream ->
-                    pdfDocument.writeTo(outputStream)
-                }
-
-                pdfDocument.close()
-
-                // Notify media scanner
-                val intent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
-                intent.data = android.net.Uri.fromFile(outputFile)
-                context.sendBroadcast(intent)
-
-                listener.onPdfGenerated(outputFile)
-
-            } catch (e: Exception) {
-                e.printStackTrace()
-                listener.onError("Error creating PDF: ${e.message}")
+            // Write to file
+            java.io.FileOutputStream(outputFile).use { outputStream ->
+                pdfDocument.writeTo(outputStream)
             }
+
+            pdfDocument.close()
+            bitmap.recycle()
+
+            // Notify media scanner
+            val intent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
+            intent.data = android.net.Uri.fromFile(outputFile)
+            context.sendBroadcast(intent)
+
+            listener.onPdfGenerated(outputFile)
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+            listener.onError("Error saving PDF: ${e.message}")
         }
     }
 }
