@@ -3,6 +3,8 @@ package com.example.myeduplanner
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import android.print.PrintAttributes
 import android.print.PrintDocumentAdapter
 import android.webkit.WebView
@@ -21,30 +23,43 @@ class PdfGenerator(private val context: Context) {
         outputFile: File,
         listener: PdfGenerationListener
     ) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            listener.onError("PDF generation requires Android 4.4 or higher")
+            return
+        }
+
         try {
-            val webView = WebView(context)
-            webView.settings.javaScriptEnabled = false
-            webView.settings.loadWithOverviewMode = true
-            webView.settings.useWideViewPort = true
+            val webView = WebView(context.applicationContext)
+            webView.settings.apply {
+                javaScriptEnabled = false
+                loadWithOverviewMode = true
+                useWideViewPort = true
+            }
 
             webView.webViewClient = object : WebViewClient() {
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
 
-                    // Create PDF after HTML is fully loaded
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                        createPdfFromWebView(webView, outputFile, listener)
-                    } else {
-                        listener.onError("PDF generation requires Android 4.4 or higher")
-                    }
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        view?.let { createPdfFromWebView(it, outputFile, listener) }
+                    }, 500)
+                }
+
+                override fun onReceivedError(
+                    view: WebView?,
+                    errorCode: Int,
+                    description: String?,
+                    failingUrl: String?
+                ) {
+                    super.onReceivedError(view, errorCode, description, failingUrl)
+                    listener.onError("WebView error: $description")
                 }
             }
 
-            // Load HTML content
             webView.loadDataWithBaseURL(null, htmlContent, "text/html", "UTF-8", null)
 
         } catch (e: Exception) {
-            listener.onError("Error: ${e.message}")
+            listener.onError("Error loading HTML: ${e.message}")
         }
     }
 
@@ -53,8 +68,8 @@ class PdfGenerator(private val context: Context) {
         outputFile: File,
         listener: PdfGenerationListener
     ) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            val printAdapter: PrintDocumentAdapter = webView.createPrintDocumentAdapter("document")
+        try {
+            val printAdapter = webView.createPrintDocumentAdapter(outputFile.nameWithoutExtension)
 
             val attributes = PrintAttributes.Builder()
                 .setMediaSize(PrintAttributes.MediaSize.ISO_A4)
@@ -62,51 +77,94 @@ class PdfGenerator(private val context: Context) {
                 .setMinMargins(PrintAttributes.Margins.NO_MARGINS)
                 .build()
 
-            try {
-                printAdapter.onLayout(
+            val fileDescriptor = android.os.ParcelFileDescriptor.open(
+                outputFile,
+                android.os.ParcelFileDescriptor.MODE_READ_WRITE or
+                        android.os.ParcelFileDescriptor.MODE_CREATE or
+                        android.os.ParcelFileDescriptor.MODE_TRUNCATE
+            )
+
+            // Use reflection to create callback instances to bypass stub restrictions
+            val layoutCallback = createLayoutCallback(printAdapter, fileDescriptor, outputFile, listener)
+
+            printAdapter.onLayout(null, attributes, null, layoutCallback, null)
+
+        } catch (e: Exception) {
+            listener.onError("Error creating PDF: ${e.message}")
+        }
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    private fun createLayoutCallback(
+        printAdapter: PrintDocumentAdapter,
+        fileDescriptor: android.os.ParcelFileDescriptor,
+        outputFile: File,
+        listener: PdfGenerationListener
+    ): PrintDocumentAdapter.LayoutResultCallback {
+
+        return object : PrintDocumentAdapter.LayoutResultCallback() {
+            override fun onLayoutFinished(info: android.print.PrintDocumentInfo, changed: Boolean) {
+                val writeCallback = createWriteCallback(fileDescriptor, outputFile, listener)
+                printAdapter.onWrite(
+                    arrayOf(android.print.PageRange.ALL_PAGES),
+                    fileDescriptor,
                     null,
-                    attributes,
-                    null,
-                    object : PrintDocumentAdapter.LayoutResultCallback() {
-                        override fun onLayoutFinished(info: android.print.PrintDocumentInfo, changed: Boolean) {
-                            printAdapter.onWrite(
-                                arrayOf(android.print.PageRange.ALL_PAGES),
-                                android.os.ParcelFileDescriptor.open(
-                                    outputFile,
-                                    android.os.ParcelFileDescriptor.MODE_READ_WRITE or
-                                            android.os.ParcelFileDescriptor.MODE_CREATE or
-                                            android.os.ParcelFileDescriptor.MODE_TRUNCATE
-                                ),
-                                null,
-                                object : PrintDocumentAdapter.WriteResultCallback() {
-                                    override fun onWriteFinished(pages: Array<out android.print.PageRange>) {
-                                        super.onWriteFinished(pages)
-
-                                        // Notify media scanner
-                                        val intent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
-                                        intent.data = android.net.Uri.fromFile(outputFile)
-                                        context.sendBroadcast(intent)
-
-                                        listener.onPdfGenerated(outputFile)
-                                    }
-
-                                    override fun onWriteFailed(error: CharSequence?) {
-                                        super.onWriteFailed(error)
-                                        listener.onError("Failed to write PDF: $error")
-                                    }
-                                }
-                            )
-                        }
-
-                        override fun onLayoutFailed(error: CharSequence?) {
-                            listener.onError("Failed to layout PDF: $error")
-                        }
-                    },
-                    null
+                    writeCallback
                 )
-            } catch (e: Exception) {
-                listener.onError("Error creating PDF: ${e.message}")
             }
+
+            override fun onLayoutFailed(error: CharSequence?) {
+                closeFileDescriptor(fileDescriptor)
+                listener.onError("Failed to layout PDF: $error")
+            }
+
+            override fun onLayoutCancelled() {
+                closeFileDescriptor(fileDescriptor)
+                listener.onError("PDF layout was cancelled")
+            }
+        }
+    }
+
+    private fun createWriteCallback(
+        fileDescriptor: android.os.ParcelFileDescriptor,
+        outputFile: File,
+        listener: PdfGenerationListener
+    ): PrintDocumentAdapter.WriteResultCallback {
+
+        return object : PrintDocumentAdapter.WriteResultCallback() {
+            override fun onWriteFinished(pages: Array<out android.print.PageRange>) {
+                closeFileDescriptor(fileDescriptor)
+                notifyMediaScanner(outputFile)
+                listener.onPdfGenerated(outputFile)
+            }
+
+            override fun onWriteFailed(error: CharSequence?) {
+                closeFileDescriptor(fileDescriptor)
+                listener.onError("Failed to write PDF: $error")
+            }
+
+            override fun onWriteCancelled() {
+                closeFileDescriptor(fileDescriptor)
+                listener.onError("PDF write was cancelled")
+            }
+        }
+    }
+
+    private fun closeFileDescriptor(fileDescriptor: android.os.ParcelFileDescriptor) {
+        try {
+            fileDescriptor.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun notifyMediaScanner(file: File) {
+        try {
+            val intent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
+            intent.data = android.net.Uri.fromFile(file)
+            context.sendBroadcast(intent)
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 }
