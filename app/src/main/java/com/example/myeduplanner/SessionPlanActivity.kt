@@ -329,7 +329,7 @@ class SessionPlanActivity : AppCompatActivity() {
 
         val htmlContent = sessionPlan.toHtmlDocument(htmlTemplate)
 
-        Toast.makeText(this, "Generating PDF...", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Generating document...", Toast.LENGTH_SHORT).show()
 
         val fileName = sessionPlan.getFileName()
         val outputFile = getPdfOutputFile(fileName)
@@ -395,7 +395,7 @@ class SessionPlanActivity : AppCompatActivity() {
                             }
                             Toast.makeText(
                                 this@SessionPlanActivity,
-                                "$message\nPDF saved to Downloads/MyEduPlanner",
+                                "$message\nHTML file saved to Downloads/MyEduPlanner",  // Changed
                                 Toast.LENGTH_LONG
                             ).show()
                             finish()
@@ -416,7 +416,7 @@ class SessionPlanActivity : AppCompatActivity() {
                 runOnUiThread {
                     Toast.makeText(
                         this@SessionPlanActivity,
-                        "Failed to generate PDF: $error",
+                        "Failed to generate document: $error",  // Changed
                         Toast.LENGTH_LONG
                     ).show()
                 }
