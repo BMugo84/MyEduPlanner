@@ -279,8 +279,7 @@ class LearningPlanActivity : AppCompatActivity() {
         val htmlContent = learningPlan.toHtmlDocument(htmlTemplate)
 
         // Show progress message
-        Toast.makeText(this, "Generating PDF...", Toast.LENGTH_SHORT).show()
-
+        Toast.makeText(this, "Generating document...", Toast.LENGTH_SHORT).show()
         // Generate PDF
         val fileName = learningPlan.getFileName()
         val outputFile = getPdfOutputFile(fileName)
@@ -337,7 +336,7 @@ class LearningPlanActivity : AppCompatActivity() {
                             }
                             Toast.makeText(
                                 this@LearningPlanActivity,
-                                "$message\nPDF saved to Downloads/MyEduPlanner",
+                                "$message\nHTML file saved to Downloads/MyEduPlanner",  // Changed message
                                 Toast.LENGTH_LONG
                             ).show()
                             finish()  // Go back to previous screen
@@ -358,7 +357,7 @@ class LearningPlanActivity : AppCompatActivity() {
                 runOnUiThread {
                     Toast.makeText(
                         this@LearningPlanActivity,
-                        "Failed to generate PDF: $error",
+                        "Failed to generate document: $error",  // Changed message
                         Toast.LENGTH_LONG
                     ).show()
                 }
