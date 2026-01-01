@@ -152,21 +152,27 @@ class HistoryActivity : AppCompatActivity() {
     }
 
     private fun viewLearningPlan(plan: LearningPlanEntity) {
-        // Open HTML file in browser
         val file = File(plan.pdfFilePath)
         if (file.exists()) {
-            val uri = Uri.fromFile(file)
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.setDataAndType(uri, "text/html")
-            intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
-
             try {
+                // Use FileProvider to get content URI
+                val uri = androidx.core.content.FileProvider.getUriForFile(
+                    this,
+                    "${applicationContext.packageName}.fileprovider",
+                    file
+                )
+
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.setDataAndType(uri, "text/html")
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+
                 startActivity(intent)
             } catch (e: Exception) {
-                Toast.makeText(this, "No app found to open HTML file", Toast.LENGTH_SHORT).show()
+                e.printStackTrace()
+                Toast.makeText(this, "Error opening file: ${e.message}", Toast.LENGTH_LONG).show()
             }
         } else {
-            Toast.makeText(this, "File not found", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "File not found at: ${plan.pdfFilePath}", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -200,18 +206,25 @@ class HistoryActivity : AppCompatActivity() {
     private fun viewSessionPlan(plan: SessionPlanEntity) {
         val file = File(plan.pdfFilePath)
         if (file.exists()) {
-            val uri = Uri.fromFile(file)
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.setDataAndType(uri, "text/html")
-            intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
-
             try {
+                // Use FileProvider to get content URI
+                val uri = androidx.core.content.FileProvider.getUriForFile(
+                    this,
+                    "${applicationContext.packageName}.fileprovider",
+                    file
+                )
+
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.setDataAndType(uri, "text/html")
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+
                 startActivity(intent)
             } catch (e: Exception) {
-                Toast.makeText(this, "No app found to open HTML file", Toast.LENGTH_SHORT).show()
+                e.printStackTrace()
+                Toast.makeText(this, "Error opening file: ${e.message}", Toast.LENGTH_LONG).show()
             }
         } else {
-            Toast.makeText(this, "File not found", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "File not found at: ${plan.pdfFilePath}", Toast.LENGTH_LONG).show()
         }
     }
 
