@@ -43,10 +43,21 @@
         android:id="@+id/btnSettings"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="⚙ Settings"
+        android:text="⚙️ Settings"
         android:textSize="16sp"
         android:textStyle="bold"
         android:backgroundTint="#FF9800"/>
+
+    <!-- History Button - NEW -->
+    <Button
+        android:id="@+id/btnHistory"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="📋 History"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:backgroundTint="#9C27B0"
+        android:layout_marginTop="12dp"/>
 
     <Space
         android:layout_width="match_parent"
