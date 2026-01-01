@@ -20,6 +20,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // History button - NEW
+        binding.btnHistory.setOnClickListener {
+            val intent = Intent(this, HistoryActivity::class.java)
+            startActivity(intent)
+        }
+
         // Learning Plan button
         binding.btnLearningPlan.setOnClickListener {
             val intent = Intent(this, LearningPlanActivity::class.java)
