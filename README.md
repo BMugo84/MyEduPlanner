@@ -2,6 +2,14 @@
 
 An Android application designed for trainers and educators to create, manage, and track **Learning Plans** and **Session Plans** based on KTTC (Kenya Technical Trainers College) templates.
 
+Youtube Links:
+- **MyEduPlanner – Development Environment & Source Code Verification** 
+https://www.youtubeeducation.com/watch?v=1uMNCLA49yA  
+
+- **MyEduPlanner – Working Prototype Demonstration**  
+https://www.youtubeeducation.com/watch?v=Vx-mPDOpPAw
+
+  
 ## 📱 Features
 
 ### Core Functionality
